@@ -3,10 +3,7 @@ package com.example.demo.controller;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.demo.service.CommentsService;
-import com.example.demo.service.CommentsService;
 import com.example.demo.dto.ApiResponseDto;
-import com.example.demo.dto.BoardForm;
-import com.example.demo.dto.BoardResponseDto;
 import com.example.demo.dto.CommentsDto;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -58,6 +55,13 @@ public class CommentsController {
     public ResponseEntity<CommentsDto> updateComments(@PathVariable("boardId") Long boardId, @PathVariable("commentId") Long commentId, @RequestBody CommentsDto commentsDto) {
     	CommentsDto responseDto = commentsService.updateComments (boardId, commentId, commentsDto);
     	return ResponseEntity.ok().body(responseDto);		
+    }
+    
+    //댓글 모두 조회
+    @GetMapping("/comments")
+    public ResponseEntity<List<CommentsDto>> getAllComments() {
+    	List<CommentsDto> responseDtoList = commentsService.getAllComments();
+    	return ResponseEntity.ok().body(responseDtoList);
     }
     
 

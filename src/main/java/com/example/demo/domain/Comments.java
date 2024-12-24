@@ -34,7 +34,7 @@ public class Comments {
         return this.commentId;
     }
 
-    public String getCcontent() {
+    public String getc_content() {
         return this.c_content;
     }
 
