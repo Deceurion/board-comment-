@@ -4,7 +4,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.demo.service.CommentsService;
 import com.example.demo.service.CommentsService;
-import com.example.demo.dto.ApiResponseDto; 
+import com.example.demo.dto.ApiResponseDto;
+import com.example.demo.dto.BoardForm;
 import com.example.demo.dto.BoardResponseDto;
 import com.example.demo.dto.CommentsDto;
 
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,6 +31,7 @@ public class CommentsController {
         this.commentsService = commentsService;
     }
 
+    //댓글 생성
     @PostMapping("/{boardId}")
     public ResponseEntity<ApiResponseDto> createComments(@PathVariable("boardId") Long boardId, @RequestBody CommentsDto commentsDto) {
         commentsDto.setBoardId(boardId);
@@ -48,6 +51,13 @@ public class CommentsController {
     public ResponseEntity<ApiResponseDto> deleteComments(@PathVariable("boardId") Long boardId, @PathVariable("commentId") Long commentId) {
     	ApiResponseDto responseDto = commentsService.deleteComments(boardId, commentId);
     	return ResponseEntity.ok().body(responseDto);
+    }
+    
+    //댓글 수정
+    @PutMapping("/{boardId}/comments/{commentId}")
+    public ResponseEntity<CommentsDto> updateComments(@PathVariable("boardId") Long boardId, @PathVariable("commentId") Long commentId, @RequestBody CommentsDto commentsDto) {
+    	CommentsDto responseDto = commentsService.updateComments (boardId, commentId, commentsDto);
+    	return ResponseEntity.ok().body(responseDto);		
     }
     
 

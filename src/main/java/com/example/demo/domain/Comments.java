@@ -34,7 +34,7 @@ public class Comments {
         return this.commentId;
     }
 
-    public String getCContent() {
+    public String getCcontent() {
         return this.c_content;
     }
 
@@ -44,5 +44,9 @@ public class Comments {
 
     public void setBoard(Board board) {
         this.board = board;
+    }
+    
+    public void setCcontent(String c_content) {
+        this.c_content = c_content;
     }
 }

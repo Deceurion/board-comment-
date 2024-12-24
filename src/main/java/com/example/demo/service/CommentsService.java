@@ -50,7 +50,7 @@ public class CommentsService {
             throw new IllegalArgumentException("이 댓글은 해당 게시글에 속하지 않습니다.");
         }
 
-        return new CommentsDto(comments.getCommentId(), comments.getCContent());
+        return new CommentsDto(comments.getCommentId(), comments.getCcontent());
     }
     
     public ApiResponseDto deleteComments(Long boardId, Long commentId) {
@@ -69,5 +69,24 @@ public class CommentsService {
         commentsRepository.deleteById(commentId);
         return new ApiResponseDto("댓글 삭제 성공");
     }
-
+    
+    public CommentsDto updateComments(Long boardId, Long commentId, CommentsDto commentsDto) {
+        Board board = boardRepository.findById(boardId)
+                .orElseThrow(() -> new RuntimeException("게시글을 찾을 수 없습니다."));
+        
+        Comments comments = commentsRepository.findById(commentId)
+                .orElseThrow(() -> new IllegalArgumentException("댓글이 없습니다."));
+        
+        // 게시글 ID와 댓글의 게시글 ID가 일치하는지 확인
+        if (!comments.getBoard().getboardId().equals(boardId)) {
+            throw new IllegalArgumentException("이 댓글은 해당 게시글에 속하지 않습니다.");
+        }
+        
+        // 댓글 내용 업데이트
+        comments.setCcontent(commentsDto.getc_Content());
+        commentsRepository.save(comments);
+        
+        return new CommentsDto(comments.getCommentId(), comments.getCcontent());
+    }
+ 
 }
