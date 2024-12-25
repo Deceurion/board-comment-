@@ -10,9 +10,10 @@ public class CommentsDto {
     }
 
     // 매개변수를 받는 생성자
-    public CommentsDto(Long commentId, String c_content) {
+    public CommentsDto(Long commentId, String c_content, Long boardId) {
         this.commentId = commentId;
         this.c_content = c_content;
+        this.boardId = boardId;
     }
 
     // Getter와 Setter

@@ -49,7 +49,7 @@ public class CommentsService {
             throw new IllegalArgumentException("이 댓글은 해당 게시글에 속하지 않습니다.");
         }
 
-        return new CommentsDto(comments.getCommentId(), comments.getc_content());
+        return new CommentsDto(comments.getCommentId(), comments.getc_content(), boardId);
     }
     
     public ApiResponseDto deleteComments(Long boardId, Long commentId) {
@@ -82,10 +82,10 @@ public class CommentsService {
         }
         
         // 댓글 내용 업데이트
-        comments.setCcontent(commentsDto.getc_Content());
+        comments.setc_content(commentsDto.getc_Content());
         commentsRepository.save(comments);
         
-        return new CommentsDto(comments.getCommentId(), comments.getc_content());
+        return new CommentsDto(comments.getCommentId(), comments.getc_content(), boardId);
     }
  
     public List<CommentsDto> getAllComments() {
@@ -95,7 +95,9 @@ public class CommentsService {
     	List<CommentsDto> dtoLits = new ArrayList<>();
     	
     	for (Comments comments : commentsList) {
-    		dtoLits.add(new CommentsDto(comments.getCommentId(), comments.getc_content()));
+    		
+    		Long boardId = comments.getBoard() != null ? comments.getBoard().getboardId() : null;
+    		dtoLits.add(new CommentsDto(comments.getCommentId(), comments.getc_content(), boardId));
     	}
     	
     	return dtoLits;

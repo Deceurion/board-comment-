@@ -46,7 +46,7 @@ public class Comments {
         this.board = board;
     }
     
-    public void setCcontent(String c_content) {
+    public void setc_content(String c_content) {
         this.c_content = c_content;
     }
 }
