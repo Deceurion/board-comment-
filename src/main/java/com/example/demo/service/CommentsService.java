@@ -7,7 +7,6 @@ import com.example.demo.dto.BoardForm;
 import com.example.demo.dto.CommentsDto;
 import com.example.demo.repository.CommentsRepository;
 import com.example.demo.repository.BoardRepository;
-import com.example.demo.dto.CommentsForm;
 import com.example.demo.domain .Comments;
 import com.example.demo.domain .Board;
 import org.springframework.stereotype.Service;
@@ -46,7 +45,7 @@ public class CommentsService {
                 .orElseThrow(() -> new IllegalArgumentException("댓글이 없습니다."));
         
         // 게시글 ID와 댓글의 게시글 ID가 일치하는지 확인
-        if (!comments.getBoard().getboardId().equals(boardId)) {
+        if (!comments.getBoard().getBoardId().equals(boardId)) {
             throw new IllegalArgumentException("이 댓글은 해당 게시글에 속하지 않습니다.");
         }
 
@@ -63,7 +62,7 @@ public class CommentsService {
                 .orElseThrow(() -> new IllegalArgumentException("댓글이 없습니다."));
         
         // 게시글 ID와 댓글의 게시글 ID가 일치하는지 확인
-        if (!comments.getBoard().getboardId().equals(boardId)) {
+        if (!comments.getBoard().getBoardId().equals(boardId)) {
             throw new IllegalArgumentException("이 댓글은 해당 게시글에 속하지 않습니다.");
         }
         commentsRepository.deleteById(commentId);
@@ -78,7 +77,7 @@ public class CommentsService {
                 .orElseThrow(() -> new IllegalArgumentException("댓글이 없습니다."));
         
         // 게시글 ID와 댓글의 게시글 ID가 일치하는지 확인
-        if (!comments.getBoard().getboardId().equals(boardId)) {
+        if (!comments.getBoard().getBoardId().equals(boardId)) {
             throw new IllegalArgumentException("이 댓글은 해당 게시글에 속하지 않습니다.");
         }
         

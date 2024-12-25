@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>게시글 목록</title>
+</head>
+<body>
+    <h1>게시글 목록</h1>
+    <hr>
+    <table>
+        <thead>
+            <tr>
+                <th>제목</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="board : ${boards}" th:if="${board.title != null}">
+                <td>
+                    <a th:href="@{/boards/{id}(id=${board.boardId})}" th:text="${board.title}"></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <form action="/" method="get" style="display:inline;">
+            <button type="submit">홈으로 돌아가기</button>
+        </form>
+</body>
+</html>

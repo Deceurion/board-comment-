@@ -25,16 +25,24 @@ public class Board {
         this.content = content;
     }
 
-    public Long getboardId() {
+    public Long getBoardId() {
         return this.boardId; // getter 메서드 수정
     }
 
     public String getTitle() {
         return this.title;
     }
-
+    
+    public void setTitle(String title) {
+        this.title = title;
+    }
+    
     public String getContent() {
         return this.content;
+    }
+    
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public void update(String title, String content) {
