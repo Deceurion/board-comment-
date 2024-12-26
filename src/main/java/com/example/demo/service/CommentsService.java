@@ -96,7 +96,7 @@ public class CommentsService {
     	
     	for (Comments comments : commentsList) {
     		
-    		Long boardId = comments.getBoard() != null ? comments.getBoard().getboardId() : null;
+    		Long boardId = comments.getBoard() != null ? comments.getBoard().getBoardId() : null;
     		dtoLits.add(new CommentsDto(comments.getCommentId(), comments.getc_content(), boardId));
     	}
     	

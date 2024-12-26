@@ -35,10 +35,6 @@ public class BoardService {
 
     // 게시글 삭제
     public ApiResponseDto deleteBoard(Long boardId) {
-        if (!boardRepository.existsById(boardId)) {
-            System.out.println("게시글 ID: " + boardId + "가 존재하지 않습니다.");
-            throw new IllegalArgumentException("게시글이 없습니다.");
-        }
         boardRepository.deleteById(boardId);
         return new ApiResponseDto("게시글 삭제 완료");
     }

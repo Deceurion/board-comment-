@@ -19,7 +19,7 @@ public class Comments {
     @ManyToOne
     @JoinColumn(name = "board_id") // 외래키 컬럼 지정
     private Board board; // 상위 게시글 참조
-
+    
     // 기본 생성자
     public Comments() {
     }
@@ -49,4 +49,5 @@ public class Comments {
     public void setc_content(String c_content) {
         this.c_content = c_content;
     }
+    
 }
